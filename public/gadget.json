@@ -1,0 +1,113 @@
+[
+    {
+      "product_id": 1,
+      "product_title": "Gaming Laptop",
+      "product_image": "https://i.ibb.co.com/fMwPrM7/ASUS-ROG-Strix-G17-17-3-inch-WQHD-240-Hz-Gaming-Laptop-AMD-Ryzen-9-7845-HX-NVIDIA-Ge-Force-RTX-4060.jpg",
+      "category": "Laptops",
+      "price": 1499,
+      "description": "High-performance gaming laptop with RGB keyboard.",
+      "Specification": ["16GB RAM", "1TB SSD", "NVIDIA GPU"],
+      "availability": "In Stock",
+      "rating": 4.7
+    },
+    {
+      "product_id": 2,
+      "product_title": "Business Laptop",
+      "product_image": "https://i.ibb.co.com/VHYK8Zx/Ta-Tk-WBkmnccpr7-Rx-JKt6d-K-320-80.jpg",
+      "category": "Laptops",
+      "price": 999,
+      "description": "Lightweight business laptop with long battery life.",
+      "Specification": ["8GB RAM", "512GB SSD"],
+      "availability": "In Stock",
+      "rating": 4.5
+    },
+    {
+      "product_id": 3,
+      "product_title": "Android Smartphone",
+      "product_image": "https://i.ibb.co.com/KFTqhY5/MPH2284B.jpg",
+      "category": "Phones",
+      "price": 699,
+      "description": "Latest Android smartphone with stunning display.",
+      "Specification": ["128GB Storage", "6GB RAM"],
+      "availability": "In Stock",
+      "rating": 4.6
+    },
+    {
+      "product_id": 4,
+      "product_title": "iPhone 14",
+      "product_image": "https://i.ibb.co.com/0F2423j/i-Phone-14-Blue-PDP-Image-Position-1-A-WWEN-43b0347b-c716-4297-b1d4-a15af53ad270.jpg",
+      "category": "iPhones",
+      "price": 1099,
+      "description": "iPhone 14 with exceptional camera and performance.",
+      "Specification": ["256GB Storage", "A15 Bionic Chip"],
+      "availability": " Not In Stock",
+      "rating": 4.8
+    },
+    {
+      "product_id": 5,
+      "product_title": "Smartwatch Series 6",
+      "product_image": "https://i.ibb.co.com/gVLKW7p/series-6-0006-500x500.jpg",
+      "category": "Smart Watches",
+      "price": 399,
+      "description": "Smartwatch with fitness tracking and notifications.",
+      "Specification": ["GPS", "Heart Rate Monitor"],
+      "availability": "In Stock",
+      "rating": 4.3
+    },
+    {
+      "product_id": 6,
+      "product_title": "Bluetooth Headset",
+      "product_image": "https://i.ibb.co.com/jgjmFgs/laoe-44-1-300x300.jpg",
+      "category": "Accessories",
+      "price": 129,
+      "description": "Wireless Bluetooth headset with noise cancellation.",
+      "Specification": ["20 hours battery", "Comfortable fit"],
+      "availability": "In Stock",
+      "rating": 4.4
+    },
+    {
+      "product_id": 7,
+      "product_title": "Wireless Charger",
+      "product_image": "https://i.ibb.co.com/bm0rPXs/Hoco-CW6-Pro-15-W-Wireless-charger-430x430.jpg",
+      "category": "Accessories",
+      "price": 49,
+      "description": "Fast wireless charger for smartphones.",
+      "Specification": ["10W Fast Charging"],
+      "availability": "In Stock",
+      "rating": 4.1
+    },
+    {
+      "product_id": 8,
+      "product_title": "MacBook Air M1",
+      "product_image": "https://i.ibb.co.com/vJ0H48k/Apple-new-macbookair-wallpaper-screen-11102020-big-jpg-large.jpg",
+      "category": "MacBooks",
+      "price": 999,
+      "description": "Ultra-light MacBook Air with M1 chip.",
+      "Specification": ["8GB RAM", "256GB SSD"],
+      "availability": "In Stock",
+      "rating": 4.8
+    },
+    {
+      "product_id": 9,
+      "product_title": "MacBook Pro M1",
+      "product_image": "https://i.ibb.co.com/vJ0H48k/Apple-new-macbookair-wallpaper-screen-11102020-big-jpg-large.jpg",
+      "category": "MacBooks",
+      "price": 1299,
+      "description": "Powerful MacBook Pro for professionals.",
+      "Specification": ["16GB RAM", "512GB SSD"],
+      "availability": "Not In Stock",
+      "rating": 4.9
+    },
+    {
+      "product_id": 10,
+      "product_title": "Smartphone Accessory Kit",
+      "product_image": "https://i.ibb.co.com/zR5gBzP/ulanzi-st-06s-multi-function-cold-shoe-smartphone-11693226671.webp",
+      "category": "Accessories",
+      "price": 75,
+      "description": "Complete accessory kit for smartphones.",
+      "Specification": ["Screen protector", "Case", "Charger"],
+      "availability": "Not In Stock",
+      "rating": 4.2
+    }
+  ]
+  

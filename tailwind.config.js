@@ -1,13 +1,15 @@
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      // your existing extensions
+    },
   },
-  // eslint-disable-next-line no-undef
-  plugins: [require('daisyui'),],
+  plugins: [require("daisyui")],
+  daisyui: {
+    themes: ["dark"], // force dark theme to match your design
+  },
 }
-

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ENSODropdown from "./ENSODropdown";
 
 const Navbar = () => {
@@ -7,6 +7,7 @@ const Navbar = () => {
   const [ensoPhase, setEnsoPhase] = useState("neutral");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const links = [
     { name: "Home", href: "/", type: "link" },
@@ -34,6 +35,40 @@ const Navbar = () => {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  useEffect(() => {
+    let active = "Home";
+    switch (location.pathname) {
+      case "/":
+        active = "Home";
+        break;
+      case "/timeline":
+        active = "Timeline";
+        break;
+      case "/map":
+        active = "Map";
+        break;
+      case "/impact":
+        active = "Impact";
+        break;
+      case "/datatech":
+        active = "Data & Tech";
+        break;
+      case "/team":
+        active = "Team & Contact";
+        break;
+      case "/about":
+        active = "About";
+        break;
+      case "/enso-basics":
+      case "/climate-connections":
+        active = "ENSO Relations";
+        break;
+      default:
+        active = "Home";
+    }
+    setActiveLink(active);
+  }, [location]);
 
   const phaseColor = (phase) => {
     if (phase === "nino") return "from-amber-400 via-orange-500 to-red-600";
@@ -105,9 +140,9 @@ const Navbar = () => {
         {/* Enhanced Desktop Links */}
         <ul className="hidden lg:flex gap-1 items-center">
           {links.map((item, index) => (
-            <li key={item.key || item.name || index}>
+            <li key={item.key || item.name || index} className={item.type === "dropdown" && activeLink === "ENSO Relations" ? `relative rounded-xl bg-gradient-to-r ${phaseColor(ensoPhase)} shadow-lg scale-105` : ""}>
               {item.type === "dropdown" ? (
-                <ENSODropdown />
+                <ENSODropdown isActive={activeLink === "ENSO Relations"} />
               ) : (
                 <Link
                   to={item.href}
@@ -193,7 +228,7 @@ const Navbar = () => {
                     <Link
                       to="/enso-basics"
                       onClick={() => {
-                        setActiveLink("ENSO Basics");
+                        setActiveLink("ENSO Relations");
                         setMenuOpen(false);
                       }}
                       className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300"
@@ -206,7 +241,7 @@ const Navbar = () => {
                     <Link
                       to="/climate-connections"
                       onClick={() => {
-                        setActiveLink("Climate Connections");
+                        setActiveLink("ENSO Relations");
                         setMenuOpen(false);
                       }}
                       className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300"

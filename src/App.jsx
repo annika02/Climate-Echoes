@@ -7,7 +7,7 @@ import ClimateConnections from "./sections/ClimateConnections";
 import TeamContact from "./sections/TeamContact";
 import About from "./sections/About";
 import Footer from "./sections/Footer";
-
+import Timeline from "./sections/Timeline";
 export default function App() {
   return (
     <Router>
@@ -17,6 +17,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/enso-basics" element={<ENSOBasics />} />
           <Route path="/climate-connections" element={<ClimateConnections />} />
+          <Route path="/timeline" element={<Timeline />} />
           <Route path="/team" element={<TeamContact />} />
           <Route path="/about" element={<About />} />
         </Routes>

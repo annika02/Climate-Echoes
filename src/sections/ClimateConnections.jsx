@@ -331,6 +331,44 @@ const ClimateConnections = () => {
             </div>
           </div>
         </motion.div>
+        {/* Video Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="mb-16"
+        >
+          <div className="bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl p-8 border border-blue-700/30">
+            <h3 className="text-2xl font-bold text-blue-400 mb-6 text-center">
+              ENSO Correlation With Global Precipitation
+            </h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Video 1 */}
+              <div className="rounded-xl overflow-hidden shadow-lg border border-blue-500/30">
+                <video 
+                  src="/videos/video1.mp4" 
+                  controls 
+                  className="w-full h-64 object-cover"
+                />
+                <p className="text-center text-blue-200 mt-2 text-sm">
+                  El Niño & La Niña Rainfall Impacts
+                </p>
+              </div>
+
+              {/* Video 2 */}
+              <div className="rounded-xl overflow-hidden shadow-lg border border-green-500/30">
+                <video 
+                  src="/videos/video2.mp4" 
+                  controls 
+                  className="w-full h-64 object-cover"
+                />
+                <p className="text-center text-green-200 mt-2 text-sm">
+                  Bangladesh Extreme Rainfall Events
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Significance Section */}
         <motion.div

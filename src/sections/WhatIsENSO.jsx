@@ -168,7 +168,7 @@ const WhatIsENSO = () => {
             <div className="bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl p-6 border border-amber-700/30">
               <h3 className="text-xl font-bold text-amber-400 mb-4">📍 Niño Monitoring Regions</h3>
               <div className="space-y-3">
-                            <img src={NinoregImg} alt="El Niño" className="mx-auto h-56 mb-4 rounded-lg shadow-md" />
+                 <img src={NinoregImg} alt="El Niño" className="mx-auto h-56 mb-4 rounded-lg shadow-md" />
                 <div className="flex justify-between items-center py-2 border-b border-amber-700/30">
                   <span className="text-amber-300">Niño 1+2</span>
                   <span className="text-amber-200 text-sm">Coastal South America</span>

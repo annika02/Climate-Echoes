@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import DailyImg from "../assets/download (2).png"
+import ExtremeImg from "../assets/download (3).png"
+import HeatmapImg from "../assets/heat.png"
+import RainfallImg from "../assets/rainfall.png"
+import ENSO from "../assets/ENSO.png"
 const ClimateConnections = () => {
   return (
     <section className="min-h-screen bg-black text-white py-20 px-6">
@@ -72,12 +76,8 @@ const ClimateConnections = () => {
             <h3 className="text-xl font-bold text-green-400 mb-4 text-center">
               10-Year Daily Rainfall Data
             </h3>
-            <div className="h-64 bg-gradient-to-b from-blue-400/20 to-green-400/20 rounded-lg border border-green-500/30 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-4xl mb-2">📊</div>
-                <p className="text-green-300 font-semibold">Daily Rainfall Patterns (with Extreme Events ≥88 mm Highlighted)</p>
-                <p className="text-green-200 text-sm mt-2">2014-2024 Timeline | Source: Processed Regional Averages from NASA Terra Datasets</p>
-              </div>
+            <div className="h-96 bg-gradient-to-b from-blue-400/20 to-green-400/20 rounded-lg border border-green-500/30">
+              <img src={DailyImg} alt="10 years daily rainfall" className="w-full h-full object-contain rounded-lg shadow-md" />
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
               <div className="text-center p-2 bg-blue-500/20 rounded">
@@ -89,6 +89,7 @@ const ClimateConnections = () => {
                 <div className="text-white font-bold">≥88mm</div>
               </div>
             </div>
+            <p className="text-green-200 text-sm mt-2">2014-2024 Timeline | Source: Processed Regional Averages from NASA Terra Datasets</p>
           </motion.div>
 
           {/* 2. Extreme Rainfall Events */}
@@ -102,7 +103,7 @@ const ClimateConnections = () => {
               Extreme Rainfall Events
             </h3>
             <div className="text-center">
-              <div className="text-6xl font-bold text-amber-300 mb-2">92</div>
+             <img src={ExtremeImg} alt="Extreme Rainfall Events" className="mx-auto h-80 w-full p-1 mb-4 rounded-lg shadow-md" />
               <p className="text-amber-200 text-lg font-semibold">Events ≥88mm (Daily Precipitation Anomalies)</p>
               <p className="text-amber-300/70 text-sm mt-2">2000-2025 Period | Aggregated Over Bangladesh Administrative Boundaries</p>
             </div>
@@ -132,12 +133,8 @@ const ClimateConnections = () => {
             <h3 className="text-xl font-bold text-purple-400 mb-4 text-center">
               Pearson Correlation Heatmap
             </h3>
-            <div className="h-64 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-lg border border-purple-500/30 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-4xl mb-2">🔥</div>
-                <p className="text-purple-300 font-semibold">Rainfall Anomalies vs ENSO Indices</p>
-                <p className="text-purple-200 text-sm mt-2">Correlation Matrix | Measures Linear Relationships (-1 to +1)</p>
-              </div>
+            <div className="h-96  rounded-lg border border-purple-500/30 ">
+                <img src={HeatmapImg} alt="Pearson Correlation Heatmap" className=" h-full w-full mb-4 rounded-lg shadow-md" />
             </div>
             <div className="mt-4 flex justify-between text-xs">
               <span className="text-red-400">-1.0 (Strong Negative Correlation)</span>
@@ -155,12 +152,9 @@ const ClimateConnections = () => {
             <h3 className="text-xl font-bold text-cyan-400 mb-4 text-center">
               Regional Rainfall vs Niño 3.4 Anomaly
             </h3>
-            <div className="h-64 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg border border-cyan-500/30 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-4xl mb-2">📈</div>
-                <p className="text-cyan-300 font-semibold">Regional Rainfall Anomalies vs Sea Surface Temperature Anomalies</p>
-                <p className="text-cyan-200 text-sm mt-2">2013-2025 Comparison | Highlights Inverse Relationship During La Niña</p>
-              </div>
+            <div className="h-96 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg border border-cyan-500/30 flex items-center justify-center">
+               <img src={RainfallImg} alt=" Regional Rainfall vs Niño 3.4 Anomaly" className="mx-auto w-full h-full  rounded-lg shadow-md" />
+
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-xs">
               <div className="text-center p-2 bg-cyan-500/20 rounded">
@@ -271,6 +265,8 @@ const ClimateConnections = () => {
             <h3 className="text-2xl font-bold text-amber-400 mb-6 text-center">
               ENSO Climate System and Regional Impacts
             </h3>
+            <img src={ENSO} alt="El Niño" className="mx-auto h-80 mb-4 rounded-lg shadow-md" />
+
             <div className="grid md:grid-cols-3 gap-6">
               {/* El Niño */}
               <div className="text-center">

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import ENSODropdown from "./ENSODropdown";
 
 const Navbar = () => {
@@ -8,14 +9,14 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { name: "Home", href: "#home", type: "link" },
-    { type: "dropdown", key: "enso-relations" }, // ENSO Relations dropdown
-    { name: "Timeline", href: "#timeline", type: "link" },
-    { name: "Map", href: "#map", type: "link" },
-    { name: "Impact", href: "#impact", type: "link" },
-    { name: "Data & Tech", href: "#datatech", type: "link" },
-    { name: "Team & Contact", href: "#team", type: "link" },
-    { name: "About", href: "#about", type: "link" },
+    { name: "Home", href: "/", type: "link" },
+    { type: "dropdown", key: "enso-relations" },
+    { name: "Timeline", href: "/timeline", type: "link" },
+    { name: "Map", href: "/map", type: "link" },
+    { name: "Impact", href: "/impact", type: "link" },
+    { name: "Data & Tech", href: "/datatech", type: "link" },
+    { name: "Team & Contact", href: "/team", type: "link" },
+    { name: "About", href: "/about", type: "link" },
   ];
 
   useEffect(() => {
@@ -80,7 +81,7 @@ const Navbar = () => {
 
       <div className="relative z-10 container mx-auto flex items-center justify-between h-full px-4 sm:px-6">
         {/* Enhanced Logo with morphing animation */}
-        <div className="flex items-center gap-3 cursor-pointer select-none group">
+        <Link to="/" className="flex items-center gap-3 cursor-pointer select-none group">
           <div className="relative">
             <div 
               className={`w-10 h-10 sm:w-12 sm:h-12 rounded-2xl border-2 border-white/20 bg-gradient-to-br from-black/80 to-black/40 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 ${phaseGlow(ensoPhase)} group-hover:shadow-lg`}
@@ -99,7 +100,7 @@ const Navbar = () => {
               ECHOES
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Enhanced Desktop Links */}
         <ul className="hidden lg:flex gap-1 items-center">
@@ -108,8 +109,8 @@ const Navbar = () => {
               {item.type === "dropdown" ? (
                 <ENSODropdown />
               ) : (
-                <a
-                  href={item.href}
+                <Link
+                  to={item.href}
                   onClick={() => setActiveLink(item.name)}
                   className={`relative px-4 py-2 rounded-xl font-semibold uppercase text-sm tracking-wider transition-all duration-500 transform hover:scale-105 ${
                     activeLink === item.name
@@ -127,7 +128,7 @@ const Navbar = () => {
                       activeLink === item.name ? 'w-3/4' : ''
                     }`} 
                   />
-                </a>
+                </Link>
               )}
             </li>
           ))}
@@ -163,8 +164,8 @@ const Navbar = () => {
                 className="animate-fade-in-up"
               >
                 {item.type === "link" ? (
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     onClick={() => {
                       setActiveLink(item.name);
                       setMenuOpen(false);
@@ -183,14 +184,14 @@ const Navbar = () => {
                       />
                       {item.name}
                     </span>
-                  </a>
+                  </Link>
                 ) : (
                   <>
                     <div className="px-4 py-2 text-green-400 font-semibold border-b border-green-700/30 mb-2">
                       ENSO RELATIONS
                     </div>
-                    <a
-                      href="#enso-basics"
+                    <Link
+                      to="/enso-basics"
                       onClick={() => {
                         setActiveLink("ENSO Basics");
                         setMenuOpen(false);
@@ -201,9 +202,9 @@ const Navbar = () => {
                         <span className="w-2 h-2 rounded-full bg-green-400" />
                         What is ENSO?
                       </span>
-                    </a>
-                    <a
-                      href="#enso-relations"
+                    </Link>
+                    <Link
+                      to="/climate-connections"
                       onClick={() => {
                         setActiveLink("Climate Connections");
                         setMenuOpen(false);
@@ -214,7 +215,7 @@ const Navbar = () => {
                         <span className="w-2 h-2 rounded-full bg-green-400" />
                         Climate Connections
                       </span>
-                    </a>
+                    </Link>
                   </>
                 )}
               </li>

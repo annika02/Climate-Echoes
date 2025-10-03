@@ -1,30 +1,27 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./sections/Navbar";
 import Home from "./sections/Home";
-import ENSO from "./sections/ENSO";
-// import Timeline from "./sections/Timeline";
-// import MapSection from "./sections/MapSection";
-// import Impact from "./sections/Impact";
-// import DataTech from "./sections/DataTech";
+import ENSOBasics from "./sections/WhatIsENSO";
+import ClimateConnections from "./sections/ClimateConnections";
 import TeamContact from "./sections/TeamContact";
 import About from "./sections/About";
 import Footer from "./sections/Footer";
+
 export default function App() {
   return (
-    <div className="font-sans text-gray-900">
-      <Navbar />
-      <main className="scroll-smooth">
-        <section id="home"><Home /></section>
-        <section id="enso"><ENSO /></section>
-        {/* <section id="timeline"><Timeline /></section>
-        <section id="map"><MapSection /></section>
-        <section id="impact"><Impact /></section>
-        <section id="datatech"><DataTech /></section> */}
-        <section id="team"><TeamContact /></section>
-        <section id="about"><About /></section>
-        <section id="footer"><Footer /></section>
-
-      </main>
-    </div>
+    <Router>
+      <div className="font-sans text-gray-900">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/enso-basics" element={<ENSOBasics />} />
+          <Route path="/climate-connections" element={<ClimateConnections />} />
+          <Route path="/team" element={<TeamContact />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }

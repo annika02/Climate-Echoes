@@ -173,7 +173,7 @@ const Home = () => {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="pt-20 text-center"
+          className="pt-32 text-center"
         >
           <motion.div
             className="inline-flex items-center gap-3 mb-8"

@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div id="about" className="min-h-screen flex flex-col items-center justify-center bg-black py-20 px-6 relative overflow-hidden">
+    <div id="about" className="min-h-screen flex flex-col items-center justify-center bg-black py-32 px-6 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-10 w-20 h-20 bg-amber-500 rounded-full blur-xl" />

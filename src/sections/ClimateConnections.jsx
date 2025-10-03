@@ -7,7 +7,7 @@ import RainfallImg from "../assets/rainfall.png"
 import ENSO from "../assets/ENSO.png"
 const ClimateConnections = () => {
   return (
-    <section className="min-h-screen bg-black text-white py-20 px-6">
+    <section className="min-h-screen bg-black text-white py-32 px-6">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <motion.div

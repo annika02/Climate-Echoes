@@ -5,7 +5,7 @@ import AnomalityEvent from "../assets/anomality event.png"
 
 const Timeline = () => {
   return (
-    <section className="min-h-screen bg-black text-white py-20 px-6">
+    <section className="min-h-screen bg-black text-white py-32 px-6">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div

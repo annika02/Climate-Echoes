@@ -11,7 +11,7 @@ const ENSODropdown = () => {
       subtitle: "El Niño & La Niña Basics",
       description: "Understanding the climate patterns",
       icon: "🌎",
-      href: "/enso-basics", // Changed to route path
+      href: "/enso-basics", 
       content: {
         definition: "ENSO (El Niño-Southern Oscillation) is the most influential climate teleconnection system on Earth, driven by periodic changes in sea surface temperatures and atmospheric circulation over the tropical Pacific Ocean.",
         phases: [
@@ -38,7 +38,7 @@ const ENSODropdown = () => {
       subtitle: "ENSO & Bangladesh Rainfall",
       description: "Impact on regional weather patterns",
       icon: "📊",
-      href: "/climate-connections", // Changed to route path
+      href: "/climate-connections", 
       content: {
         correlation: "Using Pearson's correlation coefficient to quantify relationships between ENSO phases and Bangladesh's extreme rainfall events.",
         findings: [
@@ -65,7 +65,7 @@ const ENSODropdown = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* ENSO Relations Button */}
-      <button className="relative px-4 py-2 rounded-lg font-semibold uppercase text-sm tracking-wide text-green-300 hover:text-white hover:bg-green-900/40 transition-all duration-300 group">
+      <button className="relative px-4 py-2 rounded-lg font-semibold uppercase text-sm tracking-wide text-white/70 hover:bg-white/35 transition-all duration-300 group">
         ENSO Relations
         <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-green-400 transition-all duration-400 group-hover:w-3/4" />
       </button>

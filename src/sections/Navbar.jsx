@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ENSODropdown from "./ENSODropdown";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
@@ -7,14 +8,14 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { name: "Home", href: "#home" },
-    { name: "ENSO Correlation", href: "#enso" },
-    { name: "Timeline", href: "#timeline" },
-    { name: "Map", href: "#map" },
-    { name: "Impact", href: "#impact" },
-    { name: "Data & Tech", href: "#datatech" },
-    { name: "Team & Contact", href: "#team" },
-    { name: "About", href: "#about" },
+    { name: "Home", href: "#home", type: "link" },
+    { type: "dropdown", key: "enso-relations" }, // ENSO Relations dropdown
+    { name: "Timeline", href: "#timeline", type: "link" },
+    { name: "Map", href: "#map", type: "link" },
+    { name: "Impact", href: "#impact", type: "link" },
+    { name: "Data & Tech", href: "#datatech", type: "link" },
+    { name: "Team & Contact", href: "#team", type: "link" },
+    { name: "About", href: "#about", type: "link" },
   ];
 
   useEffect(() => {
@@ -102,28 +103,32 @@ const Navbar = () => {
 
         {/* Enhanced Desktop Links */}
         <ul className="hidden lg:flex gap-1 items-center">
-          {links.map((lnk, index) => (
-            <li key={lnk.name}>
-              <a
-                href={lnk.href}
-                onClick={() => setActiveLink(lnk.name)}
-                className={`relative px-4 py-2 rounded-xl font-semibold uppercase text-sm tracking-wider transition-all duration-500 transform hover:scale-105 ${
-                  activeLink === lnk.name
-                    ? `text-white bg-gradient-to-r ${phaseColor(ensoPhase)} shadow-lg scale-105`
-                    : "text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
-                }`}
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                {lnk.name}
-                {activeLink === lnk.name && (
-                  <span className={`absolute inset-0 rounded-xl bg-gradient-to-r ${phaseColor(ensoPhase)} opacity-20 animate-pulse -z-10`} />
-                )}
-                <span 
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r ${phaseColor(ensoPhase)} transition-all duration-500 group-hover:w-3/4 ${
-                    activeLink === lnk.name ? 'w-3/4' : ''
-                  }`} 
-                />
-              </a>
+          {links.map((item, index) => (
+            <li key={item.key || item.name || index}>
+              {item.type === "dropdown" ? (
+                <ENSODropdown />
+              ) : (
+                <a
+                  href={item.href}
+                  onClick={() => setActiveLink(item.name)}
+                  className={`relative px-4 py-2 rounded-xl font-semibold uppercase text-sm tracking-wider transition-all duration-500 transform hover:scale-105 ${
+                    activeLink === item.name
+                      ? `text-white bg-gradient-to-r ${phaseColor(ensoPhase)} shadow-lg scale-105`
+                      : "text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
+                  }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {item.name}
+                  {activeLink === item.name && (
+                    <span className={`absolute inset-0 rounded-xl bg-gradient-to-r ${phaseColor(ensoPhase)} opacity-20 animate-pulse -z-10`} />
+                  )}
+                  <span 
+                    className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r ${phaseColor(ensoPhase)} transition-all duration-500 group-hover:w-3/4 ${
+                      activeLink === item.name ? 'w-3/4' : ''
+                    }`} 
+                  />
+                </a>
+              )}
             </li>
           ))}
         </ul>
@@ -151,40 +156,88 @@ const Navbar = () => {
           style={{ animation: 'slideDown 0.5s ease-out' }}
         >
           <ul className="flex flex-col items-stretch gap-2 py-4 px-4">
-            {links.map((lnk, index) => (
+            {links.map((item, index) => (
               <li 
-                key={lnk.name}
+                key={item.key || item.name || index}
                 style={{ animationDelay: `${index * 80}ms` }}
                 className="animate-fade-in-up"
               >
-                <a
-                  href={lnk.href}
-                  onClick={() => {
-                    setActiveLink(lnk.name);
-                    setMenuOpen(false);
-                  }}
-                  className={`block px-4 py-3 rounded-xl text-white/80 hover:text-white transition-all duration-500 transform hover:scale-[1.02] hover:translate-x-2 backdrop-blur-sm ${
-                    activeLink === lnk.name 
-                      ? `bg-gradient-to-r ${phaseColor(ensoPhase)} text-white shadow-lg scale-[1.02] translate-x-2` 
-                      : 'hover:bg-white/10'
-                  }`}
-                >
-                  <span className="flex items-center gap-3">
-                    <span 
-                      className={`w-2 h-2 rounded-full bg-gradient-to-r ${phaseColor(ensoPhase)} transition-all duration-500 ${
-                        activeLink === lnk.name ? 'scale-150' : 'scale-100'
-                      }`} 
-                    />
-                    {lnk.name}
-                  </span>
-                </a>
+                {item.type === "link" ? (
+                  <a
+                    href={item.href}
+                    onClick={() => {
+                      setActiveLink(item.name);
+                      setMenuOpen(false);
+                    }}
+                    className={`block px-4 py-3 rounded-xl text-white/80 hover:text-white transition-all duration-500 transform hover:scale-[1.02] hover:translate-x-2 backdrop-blur-sm ${
+                      activeLink === item.name 
+                        ? `bg-gradient-to-r ${phaseColor(ensoPhase)} text-white shadow-lg scale-[1.02] translate-x-2` 
+                        : 'hover:bg-white/10'
+                    }`}
+                  >
+                    <span className="flex items-center gap-3">
+                      <span 
+                        className={`w-2 h-2 rounded-full bg-gradient-to-r ${phaseColor(ensoPhase)} transition-all duration-500 ${
+                          activeLink === item.name ? 'scale-150' : 'scale-100'
+                        }`} 
+                      />
+                      {item.name}
+                    </span>
+                  </a>
+                ) : (
+                  <>
+                    <div className="px-4 py-2 text-green-400 font-semibold border-b border-green-700/30 mb-2">
+                      ENSO RELATIONS
+                    </div>
+                    <a
+                      href="#enso-basics"
+                      onClick={() => {
+                        setActiveLink("ENSO Basics");
+                        setMenuOpen(false);
+                      }}
+                      className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300"
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="w-2 h-2 rounded-full bg-green-400" />
+                        What is ENSO?
+                      </span>
+                    </a>
+                    <a
+                      href="#enso-relations"
+                      onClick={() => {
+                        setActiveLink("Climate Connections");
+                        setMenuOpen(false);
+                      }}
+                      className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300"
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="w-2 h-2 rounded-full bg-green-400" />
+                        Climate Connections
+                      </span>
+                    </a>
+                  </>
+                )}
               </li>
             ))}
           </ul>
         </div>
       )}
 
-      
+      {/* Add custom animations to tailwind config */}
+      <style jsx>{`
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        @keyframes gradient-xy {
+          0%, 100% { background-position: 0% 0%; }
+          50% { background-position: 100% 100%; }
+        }
+      `}</style>
     </nav>
   );
 };

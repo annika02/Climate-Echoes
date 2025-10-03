@@ -42,7 +42,7 @@ Recently, Anika published a research paper on depression detection, showcasing a
 
 const TeamContact = () => {
   return (
-    <div id="team" className="min-h-screen bg-black py-20 px-6 relative overflow-hidden">
+    <div id="team" className="min-h-screen  bg-black py-20 px-6 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-20 w-16 h-16 bg-amber-500 rounded-full blur-xl" />
@@ -97,7 +97,7 @@ const TeamContact = () => {
                 }`}>
                   {member.role}
                 </p>
-                <p className="text-green-200 leading-relaxed mb-6">{member.bio}</p>
+                <p className="text-green-200 text-justify leading-relaxed mb-6">{member.bio}</p>
                 
                 {/* Email - Very Visible */}
                 <div className="flex items-center justify-center lg:justify-start gap-3">

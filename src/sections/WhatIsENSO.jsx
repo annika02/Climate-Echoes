@@ -1,6 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import elNinoImg from "../assets/El nino.png";
+import laNinaImg from "../assets/la nina.png";
+import neutralImg from "../assets/neutral.png";
+import NinoregImg from "../assets/nino3.4.png"
 const WhatIsENSO = () => {
   return (
     <section className="min-h-screen bg-black text-white py-20 px-6">
@@ -112,12 +115,10 @@ const WhatIsENSO = () => {
                 <div className="text-center">
                   <div className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 rounded-xl p-4 border border-emerald-500/30">
                     <h4 className="text-emerald-300 font-bold text-lg mb-3">⚖️ Neutral Conditions</h4>
-                    <div className="h-32 bg-gradient-to-r from-blue-400 via-emerald-400 to-blue-400 rounded-lg relative overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-white font-semibold text-sm bg-black/40 px-4 py-2 rounded-full">
-                          Normal Trade Winds → Warm Pool in West
-                        </div>
-                      </div>
+                    <div className="h-56 bg-gradient-to-r from-blue-400 via-emerald-400 to-blue-400 rounded-lg relative overflow-hidden">
+                      
+                        <img src={neutralImg} alt="ENSO Neutral" className="mx-auto h-full mb-4 rounded-lg shadow-md" />
+                     
                     </div>
                     <p className="text-emerald-200 text-sm mt-3">
                       Typical balance of atmospheric pressure and ocean temperatures
@@ -129,12 +130,9 @@ const WhatIsENSO = () => {
                 <div className="text-center">
                   <div className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-xl p-4 border border-amber-500/30">
                     <h4 className="text-amber-300 font-bold text-lg mb-3">🔥 El Niño Conditions</h4>
-                    <div className="h-32 bg-gradient-to-r from-red-400 via-orange-400 to-red-400 rounded-lg relative overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-white font-semibold text-sm bg-black/40 px-4 py-2 rounded-full">
-                          Weakened Trade Winds ← Warm Water Spreads East
-                        </div>
-                      </div>
+                    <div className="h-56 bg-gradient-to-r from-red-400 via-orange-400 to-red-400 rounded-lg relative overflow-hidden">
+                                  <img src={elNinoImg} alt="El Niño" className="mx-auto h-full mb-4 rounded-lg shadow-md" />
+
                     </div>
                     <p className="text-amber-200 text-sm mt-3">
                       Warm water shifts eastward, increased rainfall in Americas
@@ -146,12 +144,8 @@ const WhatIsENSO = () => {
                 <div className="text-center">
                   <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl p-4 border border-cyan-500/30">
                     <h4 className="text-cyan-300 font-bold text-lg mb-3">🌊 La Niña Conditions</h4>
-                    <div className="h-32 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 rounded-lg relative overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-white font-semibold text-sm bg-black/40 px-4 py-2 rounded-full">
-                          Strong Trade Winds → Cold Water Upwelling
-                        </div>
-                      </div>
+                    <div className="h-56 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 rounded-lg relative overflow-hidden">
+                      <img src={laNinaImg} alt="La Niña" className="mx-auto h-full mb-4 rounded-lg shadow-md" />
                     </div>
                     <p className="text-cyan-200 text-sm mt-3">
                       Stronger trade winds, enhanced rainfall in western Pacific
@@ -174,6 +168,7 @@ const WhatIsENSO = () => {
             <div className="bg-gradient-to-br from-gray-900/50 to-black/50 rounded-2xl p-6 border border-amber-700/30">
               <h3 className="text-xl font-bold text-amber-400 mb-4">📍 Niño Monitoring Regions</h3>
               <div className="space-y-3">
+                            <img src={NinoregImg} alt="El Niño" className="mx-auto h-56 mb-4 rounded-lg shadow-md" />
                 <div className="flex justify-between items-center py-2 border-b border-amber-700/30">
                   <span className="text-amber-300">Niño 1+2</span>
                   <span className="text-amber-200 text-sm">Coastal South America</span>

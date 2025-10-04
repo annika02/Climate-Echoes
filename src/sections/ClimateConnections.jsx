@@ -311,7 +311,7 @@ const ClimateConnections = () => {
               </div>
             </div>
             
-            <div className="mt-8 bg-gradient-to-r from-blue-900/20 to-cyan-900/20 rounded-xl p-6 border border-blue-700/30">
+            <div className="mt-8 text-justify bg-gradient-to-r from-blue-900/20 to-cyan-900/20 rounded-xl p-6 border border-blue-700/30">
               <h4 className="text-blue-300 text-justify font-bold text-lg mb-3">Correlation Findings and Approach</h4>
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div>
@@ -324,7 +324,7 @@ const ClimateConnections = () => {
                 </div>
                 <div>
                   <p className="text-blue-200">
-                    <span className="text-emerald-300 font-semibold">Methodology:</span> Pearson’s correlation coefficient is employed to quantify the linear relationship between rainfall anomaly time series derived from Terra instruments and monthly ENSO indices. The analysis spans 2000–2025, covering multiple ENSO cycles, with focus on flood-prone regions like Sylhet, Rajshahi, and coastal districts.
+                    <span className="text-emerald-300  font-semibold">Methodology:</span> Pearson’s correlation coefficient is employed to quantify the linear relationship between rainfall anomaly time series derived from Terra instruments and monthly ENSO indices. The analysis spans 2000–2025, covering multiple ENSO cycles, with focus on flood-prone regions like Sylhet, Rajshahi, and coastal districts.
                   </p>
                 </div>
               </div>

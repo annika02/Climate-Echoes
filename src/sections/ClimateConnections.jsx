@@ -36,7 +36,7 @@ const ClimateConnections = () => {
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-bold text-cyan-400 mb-4">🌊 ENSO Index Data (El Niño/La Niña Phases)</h3>
-                <p className="text-blue-200 leading-relaxed mb-4">
+                <p className="text-blue-200 text-justify leading-relaxed mb-4">
                   The El Niño–Southern Oscillation (ENSO) index, specifically the Oceanic Niño Index (ONI), is used as a proxy for identifying global teleconnection phases. This index is based on sea surface temperature anomalies in the Niño 3.4 region of the equatorial Pacific Ocean. Positive ONI values indicate El Niño conditions (Pacific warming), while negative values indicate La Niña conditions (Pacific cooling). ENSO data are obtained from the NOAA Climate Prediction Center, available in a monthly time series format covering several decades. For our analysis, we subset the data for the period 2000–2025 to align with the Terra satellite mission timeline. These indices are crucial for capturing the timing and intensity of ENSO events and for evaluating their possible impact on South Asian monsoon systems.
                 </p>
                 <ul className="text-blue-200 space-y-2">
@@ -46,7 +46,7 @@ const ClimateConnections = () => {
                 </ul>
               </div>
               <div>
-                <h3 className="text-xl font-bold text-cyan-400 mb-4">🛰️ Terra Satellite Data for Bangladesh Rainfall Proxies</h3>
+                <h3 className="text-xl font-bold text-justify text-cyan-400 mb-4">🛰️ Terra Satellite Data for Bangladesh Rainfall Proxies</h3>
                 <p className="text-blue-200 leading-relaxed mb-4">
                   NASA’s Terra mission, launched in 1999, provides a suite of instruments that measure land, atmosphere, and energy balance variables. For this study, we rely on several Terra datasets that serve as proxies for extreme rainfall and hydrological anomalies in Bangladesh:
                 </p>
@@ -312,7 +312,7 @@ const ClimateConnections = () => {
             </div>
             
             <div className="mt-8 bg-gradient-to-r from-blue-900/20 to-cyan-900/20 rounded-xl p-6 border border-blue-700/30">
-              <h4 className="text-blue-300 font-bold text-lg mb-3">Correlation Findings and Approach</h4>
+              <h4 className="text-blue-300 text-justify font-bold text-lg mb-3">Correlation Findings and Approach</h4>
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div>
                   <p className="text-blue-200 mb-2">

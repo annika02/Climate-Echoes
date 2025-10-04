@@ -8,6 +8,9 @@ import TeamContact from "./sections/TeamContact";
 import About from "./sections/About";
 import Footer from "./sections/Footer";
 import Timeline from "./sections/Timeline";
+import Community from "./sections/CommunityPage";
+import DataTechPage from "./sections/DataTechPage";
+
 export default function App() {
   return (
     <Router>
@@ -19,6 +22,8 @@ export default function App() {
           <Route path="/climate-connections" element={<ClimateConnections />} />
           <Route path="/timeline" element={<Timeline />} />
           <Route path="/team" element={<TeamContact />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/datatech" element={<DataTechPage />} />
           <Route path="/about" element={<About />} />
         </Routes>
         <Footer />

@@ -37,7 +37,7 @@ const WhatIsENSO = () => {
                 El Niño-Southern Oscillation (ENSO)
               </h2>
               
-              <div className="space-y-4 text-green-200 leading-relaxed">
+              <div className="space-y-4 text-green-200 text-justify leading-relaxed">
                 <p>
                   The El Niño-Southern Oscillation (ENSO) is a significant climate phenomenon marked by changes in sea surface temperatures and atmospheric pressure in the tropical Pacific.
                 </p>

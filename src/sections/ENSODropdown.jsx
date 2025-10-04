@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const ENSODropdown = () => {
+const ENSODropdown = ({ isActive, phaseColor, onSelect }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const dropdownItems = [
@@ -58,16 +58,27 @@ const ENSODropdown = () => {
     }
   ];
 
+  const handleItemClick = () => {
+    setIsHovered(false);
+    if (onSelect) onSelect();
+  };
+
   return (
     <div 
       className="relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* ENSO Relations Button */}
-      <button className="relative px-4 py-2 rounded-lg font-semibold uppercase text-sm tracking-wide text-white/70 hover:bg-white/35 transition-all duration-300 group">
-        ENSO Relations
-        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-green-400 transition-all duration-400 group-hover:w-3/4" />
+      {/* ENSO Relations Button - Now matches other nav items exactly */}
+      <button 
+        className={`flex items-center px-3 py-2 rounded-lg text-white text-sm md:text-base transition-colors ${
+          isActive 
+            ? `${phaseColor} font-bold` 
+            : "hover:bg-white/10"
+        }`}
+      >
+        <span className="mr-1">🌊</span>
+        <span>ENSO Relations</span>
       </button>
 
       {/* Dropdown Menu */}
@@ -78,7 +89,7 @@ const ENSODropdown = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="absolute top-full left-0 mt-2 w-96 rounded-2xl backdrop-blur-xl bg-black/95 border border-green-700/30 shadow-2xl z-50 overflow-hidden"
+            className="absolute top-full left-0 mt-2 w-80 sm:w-96 rounded-2xl backdrop-blur-xl bg-black/95 border border-green-700/30 shadow-2xl z-50 overflow-hidden"
           >
             {/* Header */}
             <div className="p-4 border-b border-green-800/30 bg-gradient-to-r from-green-900/20 to-emerald-900/10">
@@ -92,7 +103,7 @@ const ENSODropdown = () => {
                 <Link
                   key={item.title}
                   to={item.href}
-                  onClick={() => setIsHovered(false)}
+                  onClick={handleItemClick}
                 >
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -120,10 +131,10 @@ const ENSODropdown = () => {
                       {/* Preview Content */}
                       {item.title === "What is ENSO?" && (
                         <div className="mt-2 text-xs text-green-200/80">
-                          <p className="line-clamp-2">{item.content.definition}</p>
-                          <div className="flex gap-1 mt-1">
+                          <p className="line-clamp-2 leading-tight">{item.content.definition}</p>
+                          <div className="flex gap-1 mt-2 flex-wrap">
                             {item.content.phases.map(phase => (
-                              <span key={phase.name} className="px-1.5 py-0.5 bg-green-800/30 rounded text-[10px]">
+                              <span key={phase.name} className="px-2 py-1 bg-green-800/30 rounded text-[10px] leading-none">
                                 {phase.name}
                               </span>
                             ))}
@@ -133,15 +144,15 @@ const ENSODropdown = () => {
                       
                       {item.title === "Climate Connections" && (
                         <div className="mt-2 text-xs text-green-200/80">
-                          <p className="line-clamp-2">{item.content.correlation}</p>
-                          <div className="flex gap-1 mt-1 flex-wrap">
-                            <span className="px-1.5 py-0.5 bg-blue-800/30 rounded text-[10px]">
+                          <p className="line-clamp-2 leading-tight">{item.content.correlation}</p>
+                          <div className="flex gap-1 mt-2 flex-wrap">
+                            <span className="px-2 py-1 bg-blue-800/30 rounded text-[10px] leading-none">
                               Pearson Correlation
                             </span>
-                            <span className="px-1.5 py-0.5 bg-blue-800/30 rounded text-[10px]">
+                            <span className="px-2 py-1 bg-blue-800/30 rounded text-[10px] leading-none">
                               Rainfall Analysis
                             </span>
-                            <span className="px-1.5 py-0.5 bg-blue-800/30 rounded text-[10px]">
+                            <span className="px-2 py-1 bg-blue-800/30 rounded text-[10px] leading-none">
                               Satellite Data
                             </span>
                           </div>
@@ -150,7 +161,7 @@ const ENSODropdown = () => {
                     </div>
 
                     {/* Arrow */}
-                    <div className="text-green-400 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 flex-shrink-0">
+                    <div className="text-green-400 opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300 flex-shrink-0 mt-1">
                       →
                     </div>
                   </motion.div>

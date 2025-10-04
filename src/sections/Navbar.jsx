@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import ENSODropdown from "./ENSODropdown";
 
 const Navbar = () => {
@@ -7,20 +8,28 @@ const Navbar = () => {
   const [ensoPhase, setEnsoPhase] = useState("neutral");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const location = useLocation();
 
   const links = [
-    { name: "Home", href: "/", type: "link" },
-    { type: "dropdown", key: "enso-relations" },
-    { name: "Timeline", href: "/timeline", type: "link" },
-    { name: "Map", href: "/map", type: "link" },
-    { name: "Impact", href: "/impact", type: "link" },
-    { name: "Data & Tech", href: "/datatech", type: "link" },
-    { name: "Team & Contact", href: "/team", type: "link" },
-    { name: "About", href: "/about", type: "link" },
+    { name: "Home", href: "/", icon: "🏠" },
+    { name: "Timeline", href: "/timeline", icon: "⏳" },
+    { name: "Map", href: "/map", icon: "🗺️" },
+    { name: "Impact", href: "/impact", icon: "🌍" },
+    { name: "Data & Tech", href: "/datatech", icon: "📊" },
+    { name: "Team & Contact", href: "/team", icon: "👥" },
+    { name: "Community", href: "/community", icon: "🤝" },
+    { name: "About", href: "/about", icon: "ℹ️" },
   ];
 
   useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
     const ensoInterval = setInterval(() => {
       setEnsoPhase((prev) =>
         prev === "neutral" ? "nino" : prev === "nino" ? "nina" : "neutral"
@@ -31,6 +40,7 @@ const Navbar = () => {
     window.addEventListener("scroll", onScroll);
 
     return () => {
+      window.removeEventListener("resize", checkScreenSize);
       clearInterval(ensoInterval);
       window.removeEventListener("scroll", onScroll);
     };
@@ -41,6 +51,11 @@ const Navbar = () => {
     switch (location.pathname) {
       case "/":
         active = "Home";
+        break;
+      case "/enso":
+      case "/enso-basics":
+      case "/climate-connections":
+        active = "ENSO Relations";
         break;
       case "/timeline":
         active = "Timeline";
@@ -57,12 +72,11 @@ const Navbar = () => {
       case "/team":
         active = "Team & Contact";
         break;
+      case "/community":
+        active = "Community";
+        break;
       case "/about":
         active = "About";
-        break;
-      case "/enso-basics":
-      case "/climate-connections":
-        active = "ENSO Relations";
         break;
       default:
         active = "Home";
@@ -71,200 +85,250 @@ const Navbar = () => {
   }, [location]);
 
   const phaseColor = (phase) => {
-    if (phase === "nino") return "from-amber-400 via-orange-500 to-red-600";
-    if (phase === "nina") return "from-cyan-400 via-blue-500 to-indigo-600";
-    return "from-emerald-400 via-green-500 to-teal-600";
+    if (phase === "nino") return "from-amber-400 to-orange-700";
+    if (phase === "nina") return "from-cyan-400 to-blue-700";
+    return "from-emerald-400 to-teal-700";
   };
 
-  const phaseGlow = (phase) => {
-    if (phase === "nino") return "shadow-amber-500/30";
-    if (phase === "nina") return "shadow-cyan-500/30";
-    return "shadow-emerald-500/30";
-  };
+  const activeColorClass = phaseColor(ensoPhase);
 
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? "h-16 bg-black/90 backdrop-blur-2xl border-b border-white/20" 
-          : "h-24 bg-gradient-to-b from-black/95 to-transparent backdrop-blur-xl"
+          ? "h-14 md:h-16 bg-black/95 backdrop-blur-md shadow-lg" 
+          : "h-16 md:h-20 bg-black/90 backdrop-blur-sm"
       }`}
     >
-      {/* Animated background gradient */}
-      <div 
-        className={`absolute inset-0 pointer-events-none bg-gradient-to-r ${phaseColor(ensoPhase)} opacity-20 transition-all duration-2000`} 
+      {/* Animated Gradient Background */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-r ${activeColorClass} opacity-50 transition-all duration-1000`}
       />
       
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute w-1 h-1 rounded-full bg-white opacity-40 ${phaseGlow(ensoPhase)}`}
-            style={{ 
-              left: `${10 + i * 12}%`, 
-              top: `${30 + Math.sin(i) * 40}%`,
-              animationDelay: `${i * 0.8}s`,
-              animationDuration: `${4 + i * 0.5}s`
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 container mx-auto flex items-center justify-between h-full px-4 sm:px-6">
-        {/* Enhanced Logo with morphing animation */}
-        <Link to="/" className="flex items-center gap-3 cursor-pointer select-none group">
-          <div className="relative">
-            <div 
-              className={`w-12 h-12 rounded-2xl border-2 border-white/20 bg-gradient-to-br from-black/80 to-black/40 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 ${phaseGlow(ensoPhase)} group-hover:shadow-lg`}
-            >
-              <div 
-                className={`w-6 h-6 rounded-full bg-gradient-to-br ${phaseColor(ensoPhase)} bg-[length:400%_400%] transition-all duration-1000`} 
-              />
-            </div>
-            <div className={`absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r ${phaseColor(ensoPhase)} opacity-20 animate-ping-slow -z-10`} />
-            <div className={`absolute inset-0 rounded-2xl border border-white/10 animate-pulse-slow -z-10`} />
-          </div>
-          <div className="transition-all duration-500 group-hover:translate-x-1">
-            <div className="text-sm font-bold text-white/80 tracking-widest">CLIMATE</div>
-            <div className={`text-2xl sm:text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r ${phaseColor(ensoPhase)} transition-all duration-1000`}>
-              ECHOES
-            </div>
-          </div>
-        </Link>
-
-        {/* Enhanced Desktop Links */}
-        <ul className="hidden lg:flex gap-2 items-center">
-          {links.map((item, index) => (
-            <li key={item.key || item.name || index} className={item.type === "dropdown" && activeLink === "ENSO Relations" ? `relative rounded-xl bg-gradient-to-r ${phaseColor(ensoPhase)} shadow-lg scale-105` : ""}>
-              {item.type === "dropdown" ? (
-                <ENSODropdown isActive={activeLink === "ENSO Relations"} />
-              ) : (
-                <Link
-                  to={item.href}
-                  onClick={() => setActiveLink(item.name)}
-                  className={`relative px-5 py-3 rounded-xl font-semibold uppercase text-base tracking-wider transition-all duration-500 transform hover:scale-105 ${
-                    activeLink === item.name
-                      ? `text-white bg-gradient-to-r ${phaseColor(ensoPhase)} shadow-lg scale-105`
-                      : "text-white/70 hover:text-white hover:bg-white/35 backdrop-blur-sm"
-                  }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  {item.name}
-                  {activeLink === item.name && (
-                    <span className={`absolute inset-0 rounded-xl bg-gradient-to-r ${phaseColor(ensoPhase)} opacity-20 animate-pulse -z-10`} />
-                  )}
-                  <span 
-                    className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r ${phaseColor(ensoPhase)} transition-all duration-500 hover:w-3/4 ${
-                      activeLink === item.name ? 'w-3/4' : ''
-                    }`} 
-                  />
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
-
-        {/* Enhanced Mobile menu button */}
-        <div className="lg:hidden">
-          <button
-            onClick={() => setMenuOpen((s) => !s)}
-            className={`p-3 rounded-2xl border border-white/20 text-white/70 hover:text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-500 transform hover:scale-110 ${menuOpen ? `bg-gradient-to-r ${phaseColor(ensoPhase)} text-white scale-110` : ''}`}
-            aria-label="toggle menu"
+      <div className="relative z-10 h-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+        <div className="flex items-center justify-between h-full">
+          
+          {/* Logo */}
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 text-white font-bold min-w-0 flex-shrink-0"
+            onClick={() => setMenuOpen(false)}
           >
-            <div className="relative w-6 h-6">
-              <span className={`absolute top-1/2 left-0 w-6 h-0.5 bg-current transform transition-all duration-500 ${menuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'}`} />
-              <span className={`absolute top-1/2 left-0 w-6 h-0.5 bg-current transition-all duration-300 ${menuOpen ? 'opacity-0' : 'opacity-100'}`} />
-              <span className={`absolute top-1/2 left-0 w-6 h-0.5 bg-current transform transition-all duration-500 ${menuOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'}`} />
+            <span className="text-xl sm:text-2xl">🌍</span>
+            <span className="text-sm sm:text-lg md:text-xl lg:text-xl whitespace-nowrap">
+              CLIMATE ECHOES
+            </span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center justify-center flex-1 max-w-4xl mx-4">
+            <ul className="flex items-center space-x-1 xl:space-x-2">
+              <li className="flex-shrink-0">
+                <Link
+                  to="/"
+                  className={`flex items-center px-2 py-2 rounded-lg text-white text-sm xl:text-base transition-all duration-300 whitespace-nowrap min-w-[60px] justify-center ${
+                    activeLink === "Home"
+                      ? `${activeColorClass} bg-gradient-to-r text-white font-semibold shadow-lg`
+                      : "hover:bg-white/10 hover:scale-105"
+                  }`}
+                >
+                  <span className="mr-1 text-xs xl:text-sm">🏠</span>
+                  <span>Home</span>
+                </Link>
+              </li>
+
+              <li className="flex-shrink-0">
+                <ENSODropdown 
+                  isActive={activeLink === "ENSO Relations"} 
+                  phaseColor={activeColorClass}
+                />
+              </li>
+
+              {links.slice(1).map((item) => (
+                <li key={item.name} className="flex-shrink-0">
+                  <Link
+                    to={item.href}
+                    className={`flex items-center px-2 py-2 rounded-lg text-white text-sm xl:text-base transition-all duration-300 whitespace-nowrap min-w-[60px] justify-center ${
+                      activeLink === item.name
+                        ? `${activeColorClass} bg-gradient-to-r text-white font-semibold shadow-lg`
+                        : "hover:bg-white/10 hover:scale-105"
+                    }`}
+                  >
+                    <span className="mr-1 text-xs xl:text-sm">{item.icon}</span>
+                    <span className="hidden xl:inline">{item.name}</span>
+                    <span className="xl:hidden text-xs">{item.name.split(' ')[0]}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Tablet Navigation */}
+          <div className="hidden md:flex lg:hidden items-center">
+            <ul className="flex items-center space-x-1">
+              <li>
+                <Link
+                  to="/"
+                  className={`flex items-center px-2 py-2 rounded-lg text-white text-xs transition-all ${
+                    activeLink === "Home"
+                      ? `${activeColorClass} bg-gradient-to-r text-white font-semibold`
+                      : "hover:bg-white/10"
+                  }`}
+                >
+                  <span className="mr-1">🏠</span>
+                  <span>Home</span>
+                </Link>
+              </li>
+
+              <li>
+                <ENSODropdown 
+                  isActive={activeLink === "ENSO Relations"} 
+                  phaseColor={activeColorClass}
+                  compact={true}
+                />
+              </li>
+
+              {links.slice(1, 4).map((item) => (
+                <li key={item.name}>
+                  <Link
+                    to={item.href}
+                    className={`flex items-center px-2 py-2 rounded-lg text-white text-xs transition-all ${
+                      activeLink === item.name
+                        ? `${activeColorClass} bg-gradient-to-r text-white font-semibold`
+                        : "hover:bg-white/10"
+                    }`}
+                  >
+                    <span className="mr-1">{item.icon}</span>
+                    <span>{item.name.split(' ')[0]}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Enhanced Hamburger Menu Button */}
+          <button
+            className="lg:hidden flex items-center justify-center w-12 h-12 rounded-xl transition-all duration-300 group relative"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {/* Background with better visibility */}
+            <div className={`absolute inset-0 rounded-xl transition-all duration-300 ${
+              menuOpen 
+                ? 'bg-white/20 backdrop-blur-md shadow-lg' 
+                : 'bg-white/10 hover:bg-white/20 backdrop-blur-sm'
+            }`} />
+            
+            {/* Animated Icon */}
+            <div className="relative z-10 text-white transition-transform duration-300 group-hover:scale-110">
+              {menuOpen ? (
+                <X size={28} className="filter drop-shadow-md" />
+              ) : (
+                <Menu size={28} className="filter drop-shadow-md" />
+              )}
             </div>
+
+            {/* Pulse animation when closed */}
+            {!menuOpen && (
+              <div className="absolute inset-0 rounded-xl bg-white/20 animate-ping opacity-20" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Enhanced Mobile dropdown */}
+            {/* Mobile Dropdown Menu */}
       {menuOpen && (
-        <div 
-          className="lg:hidden bg-gradient-to-b from-black/95 to-black/80 backdrop-blur-2xl border-t border-white/10"
+        <div
+          className="lg:hidden fixed inset-0 top-[60px] md:top-[64px] z-[1000]"
+          style={{ backgroundColor: '#1A202C' }}
+          id="mobile-menu"
         >
-          <ul className="flex flex-col items-stretch gap-2 py-4 px-4">
-            {links.map((item, index) => (
-              <li 
-                key={item.key || item.name || index}
-                style={{ animationDelay: `${index * 80}ms` }}
-                className="animate-fade-in-up"
+          <div
+            className="relative z-[1001] container mx-auto px-4 py-6 h-[calc(100vh-60px)] md:h-[calc(100vh-64px)] overflow-y-auto"
+            style={{ backgroundColor: '#1A202C' }}
+          >
+            {/* Close Header */}
+            <div className="flex justify-between items-center mb-6 px-2">
+              <h2 className="text-white text-xl font-bold">Menu</h2>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-lg text-white hover:bg-white/20 transition-colors"
+                aria-label="Close menu"
               >
-                {item.type === "link" ? (
+                <X size={20} />
+              </button>
+            </div>
+
+            <ul className="grid grid-cols-1 gap-3">
+              <li>
+                <Link
+                  to="/"
+                  onClick={() => {
+                    setActiveLink("Home");
+                    setMenuOpen(false);
+                  }}
+                  className={`flex items-center px-4 py-4 rounded-xl text-white text-lg transition-all duration-300 border-2 ${
+                    activeLink === "Home"
+                      ? `${activeColorClass} bg-gradient-to-r text-white font-bold shadow-xl transform scale-105 border-white/30`
+                      : "hover:bg-white/10 hover:scale-105 border-white/10"
+                  }`}
+                >
+                  <span className="mr-3 text-xl">🏠</span>
+                  <span className="font-medium">Home</span>
+                </Link>
+              </li>
+
+              <li>
+                <div className="px-2 py-3">
+                  <ENSODropdown 
+                    isActive={activeLink === "ENSO Relations"} 
+                    phaseColor={activeColorClass}
+                    onSelect={() => setMenuOpen(false)}
+                  />
+                </div>
+              </li>
+
+              {links.slice(1).map((item) => (
+                <li key={item.name}>
                   <Link
                     to={item.href}
                     onClick={() => {
                       setActiveLink(item.name);
                       setMenuOpen(false);
                     }}
-                    className={`block px-4 py-3 rounded-xl text-white/70 hover:text-white transition-all duration-500 transform hover:scale-[1.02] hover:translate-x-2 backdrop-blur-sm ${
-                      activeLink === item.name 
-                        ? `bg-gradient-to-r ${phaseColor(ensoPhase)} text-white shadow-lg scale-[1.02] translate-x-2` 
-                        : 'hover:bg-white/10'
+                    className={`flex items-center px-4 py-4 rounded-xl text-white text-lg transition-all duration-300 border-2 ${
+                      activeLink === item.name
+                        ? `${activeColorClass} bg-gradient-to-r text-white font-bold shadow-xl transform scale-105 border-white/30`
+                        : "hover:bg-white/10 hover:scale-105 border-white/10"
                     }`}
                   >
-                    <span className="flex items-center gap-3">
-                      <span 
-                        className={`w-2 h-2 rounded-full bg-gradient-to-r ${phaseColor(ensoPhase)} transition-all duration-500 ${
-                          activeLink === item.name ? 'scale-150' : 'scale-100'
-                        }`} 
-                      />
-                      {item.name}
-                    </span>
+                    <span className="mr-3 text-xl">{item.icon}</span>
+                    <span className="font-medium">{item.name}</span>
                   </Link>
-                ) : (
-                  <>
-                    <div className="px-4 py-2 text-green-400 font-semibold border-b border-green-700/30 mb-2">
-                      ENSO RELATIONS
-                    </div>
-                    <Link
-                      to="/enso-basics"
-                      onClick={() => {
-                        setActiveLink("ENSO Relations");
-                        setMenuOpen(false);
-                      }}
-                      className="block px-6 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
-                    >
-                      <span className="flex items-center gap-3">
-                        <span className="w-2 h-2 rounded-full bg-green-400" />
-                        What is ENSO?
-                      </span>
-                    </Link>
-                    <Link
-                      to="/climate-connections"
-                      onClick={() => {
-                        setActiveLink("ENSO Relations");
-                        setMenuOpen(false);
-                      }}
-                      className="block px-6 py-2 rounded-xl text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
-                    >
-                      <span className="flex items-center gap-3">
-                        <span className="w-2 h-2 rounded-full bg-green-400" />
-                        Climate Connections
-                      </span>
-                    </Link>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+            
+            {/* Enhanced Close Button */}
+            <div className="mt-8 px-4">
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="w-full py-4 px-4 bg-white/20 text-white rounded-xl font-bold hover:bg-white/30 transition-all duration-300 border border-white/20 hover:border-white/40 flex items-center justify-center gap-2"
+              >
+                <X size={20} />
+                Close Menu
+              </button>
+            </div>
+
+            {/* Footer Info */}
+            <div className="mt-6 px-4 text-center">
+              <p className="text-white/60 text-sm">
+                Climate Echoes • NASA Terra Data 2000-2025
+              </p>
+            </div>
+          </div>
         </div>
       )}
-
-      {/* Add custom animations to tailwind config */}
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(180deg); }
-        }
-      `}</style>
     </nav>
   );
 };
